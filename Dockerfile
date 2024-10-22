@@ -1,6 +1,6 @@
-bashCopy code
+
 # Use the official Node.js image as the base image
-FROM node:18
+FROM node:20.9.0
 
 # Set the working directory in the container
 WORKDIR /app
