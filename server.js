@@ -6,6 +6,7 @@ const io=require("socket.io")(3001,{cors:{
 
 
 io.on("connection",(socket)=>{
+    console.log("user connected");
     socket.on("joinRoom", (fixtureId) => {
         socket.join(fixtureId);
         console.log(`User joined room: ${fixtureId}`);
@@ -17,6 +18,9 @@ io.on("connection",(socket)=>{
         // Emit the message to the specific room (fixture)
         io.to(fixtureId).emit("message", chat);
         console.log("send to room",chat);
+        io.emit("notification", { title: `${sendergameusername} sent a message!`,fixtureId:fixtureId,sender:sender,message:message });
+        console.log("send to room", chat);
+
     });
 
 
